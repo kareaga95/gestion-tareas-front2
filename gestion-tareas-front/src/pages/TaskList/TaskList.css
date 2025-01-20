@@ -1,0 +1,104 @@
+/* Contenedor principal */
+.task-list-container {
+    padding: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+    color: #333;
+  }
+  
+  /* Título principal */
+  .task-list-container h1 {
+    text-align: center;
+    color: #007bff;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Pestañas de categorías */
+  .category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .category-tab {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .category-tab:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .category-tab.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  
+  /* Lista de tareas */
+  .task-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .task-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s, background-color 0.3s;
+  }
+  
+  .task-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .task-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+    background-color: #e9ecef;
+  }
+  
+  .task-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 1;
+  }
+  
+  .task-details h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .task-details p {
+    margin: 0.3rem 0;
+    color: #666;
+  }
+  
+  /* Checkbox */
+  input[type="checkbox"] {
+    transform: scale(1.5);
+    cursor: pointer;
+  }
+  
