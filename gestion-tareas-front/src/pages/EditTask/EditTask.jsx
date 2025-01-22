@@ -4,7 +4,7 @@ import { getTaskById, updateTask } from "../../utils/api/TaskController";
 import "./EditTask.css";
 
 const EditTask = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // ID de la tarea
   const navigate = useNavigate();
   const [task, setTask] = useState(null);
   const [error, setError] = useState(null);
@@ -35,7 +35,10 @@ const EditTask = () => {
     e.preventDefault();
     try {
       await updateTask(id, task);
-      navigate("/"); // Redirigir a la lista de tareas
+
+      // Obtener el ID del usuario desde la tarea y redirigir
+      const userId = task.user_id;
+      navigate(`/tasks/user/${userId}`); // Redirige a la lista de tareas del usuario
     } catch (err) {
       console.error("Error al actualizar la tarea:", err);
       setError("No se pudo actualizar la tarea.");

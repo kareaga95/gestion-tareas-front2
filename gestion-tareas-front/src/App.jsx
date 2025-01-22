@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import TaskList from "./pages/TaskList/TaskList";
 import Login from "./pages/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import EditTask from "./pages/EditTask/EditTask";
 
 function App() {
@@ -27,9 +28,10 @@ function App() {
 
   return (
     <Router>
-      <Navbar user={user} onLogout={() => setUser(null)} />
+      <Navbar user={user} onLogout={() => { etUser(null);  localStorage.removeItem("user");  }} />
       <div>
         <Routes>
+          {/* Ruta raíz redirige a Login si no hay usuario autenticado */}
           <Route
             path="/tasks/user/:id" element={user ? <TaskList /> : <Navigate to="/Login" />}
           />
@@ -37,6 +39,7 @@ function App() {
           <Route path="/edit-task/:id" element={<EditTask />} />
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 }
