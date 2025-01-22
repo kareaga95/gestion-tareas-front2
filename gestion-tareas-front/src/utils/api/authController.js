@@ -1,28 +1,28 @@
-const BASE_URL = "http://localhost:3002";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-async function fetchAuth(endpoint, method = "POST", body = null) {
-    const url = `${BASE_URL}${endpoint}`;
-    const options = {
-        method,
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: body ? JSON.stringify(body) : null,
-        credentials: "include", // Incluir credenciales (cookies o encabezados)
-    };
+async function fetchAuth(pathName, method = "POST", body = null) {
+    console.log("BASE_URL:", BASE_URL);
+    try {
+        const url = `${BASE_URL}${pathName}`;
+        const options = {
+            method,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: body ? JSON.stringify(body) : null,
+        };
 
-    console.log("URL:", url);
-    console.log("Opciones de la solicitud:", options);
+        const response = await fetch(url, options);
 
-    const response = await fetch(url, options);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-    if (!response.ok) {
-        const errorResponse = await response.text(); // Leer el cuerpo de la respuesta para obtener más detalles
-        console.error("Respuesta del servidor:", errorResponse);
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching auth:", error);
+        throw error;
     }
-
-    return await response.json();
 }
 
 /**
@@ -51,6 +51,7 @@ export function logout() {
     console.log("ENTRA LOGOUT")
     localStorage.removeItem("authToken");
     localStorage.removeItem("user");
+    localStorage.removeItem("artist");
     console.log("Sesión cerrada");
 }
 

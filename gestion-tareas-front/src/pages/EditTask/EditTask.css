@@ -1,0 +1,91 @@
+/* Contenedor principal */
+.edit-task-container {
+    width: 800px;
+    height: 800px;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  /* Título */
+  .edit-task-container h1 {
+    text-align: center;
+    color: #007bff;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Formulario */
+  .edit-task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaciado uniforme entre elementos */
+    width: 100%;
+    max-width: 700px; /* Aumentar el ancho del formulario */
+    margin: 0 auto; /* Asegurar el centrado horizontal */
+    padding: 0 2rem; /* Márgenes uniformes a izquierda y derecha */
+  }
+  
+  /* Etiquetas */
+  .edit-task-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  /* Inputs de texto */
+  .edit-task-form input[type="text"],
+  .edit-task-form textarea,
+  .edit-task-form select,
+  .edit-task-form input[type="date"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+  }
+  
+  .edit-task-form input[type="text"]:focus,
+  .edit-task-form textarea:focus,
+  .edit-task-form select:focus,
+  .edit-task-form input[type="date"]:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  /* Textarea */
+  .edit-task-form textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  /* Botón de guardar */
+  .edit-task-form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center; /* Centrar el botón */
+  }
+  
+  .edit-task-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  

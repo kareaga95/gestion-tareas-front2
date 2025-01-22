@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import TaskList from "./pages/TaskList/TaskList";
 import Login from "./pages/Login/Login";
+import Navbar from "./components/Navbar/Navbar";
+import EditTask from "./pages/EditTask/EditTask";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -25,13 +27,14 @@ function App() {
 
   return (
     <Router>
+      <Navbar user={user} onLogout={() => setUser(null)} />
       <div>
-        <h1>Gestión de Tareas</h1>
         <Routes>
-          {/* Redirigir automáticamente a /Login si no está autenticado */}
-          <Route path="/" element={user ? <TaskList /> : <Navigate to="/Login" />} />
-          {/* Ruta de login */}
+          <Route
+            path="/tasks/user/:id" element={user ? <TaskList /> : <Navigate to="/Login" />}
+          />
           <Route path="/Login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/edit-task/:id" element={<EditTask />} />
         </Routes>
       </div>
     </Router>

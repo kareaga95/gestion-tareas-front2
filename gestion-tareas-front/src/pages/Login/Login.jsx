@@ -4,63 +4,66 @@ import authController from "../../utils/api/authController";
 import "./Login.css";
 
 const Login = ({ onLogin }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await authController.login({ email, password });
+      const userId = response.user._id; // Asegúrate de que el backend devuelve un campo `_id`
+      if (!userId) throw new Error("No se pudo obtener el userId");
   
-    const handleLogin = async (e) => {
-      e.preventDefault();
-      try {
-        const response = await authController.login({ email, password });
-        console.log("RESPONSEEE :", response.user.id);
-        onLogin(response.user);
-        navigate("/");
-      } catch (error) {
-        console.error("Error al iniciar sesión:", error);
-        setError(error.message);
-      }
-    };
+      // Guarda el usuario en localStorage
+      localStorage.setItem("user", JSON.stringify(response.user));
+  
+      console.log("Usuario logueado:", userId);
+      navigate(`/tasks/user/${userId}`);
+    } catch (err) {
+      console.error("Error al iniciar sesión:", err);
+      setError(err.message || "Error al iniciar sesión");
+    }
+  };
 
   return (
     <div className="login-container">
-      <div className="login-box">
-        <h1>Iniciar Sesión</h1>
-        <form onSubmit={handleLogin} className="login-form">
-          <div className="form-group">
-            <label htmlFor="email">Correo Electrónico</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Ingrese su correo"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Ingrese su contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          {error && <p className="error-message">{error}</p>}
-          <button type="submit" className="btn-login">
-            Iniciar Sesión
-          </button>
-        </form>
-        <div className="register-link">
-          <p>
-            ¿No tienes una cuenta? <a href="/register">Regístrate</a>
-          </p>
+      <h1>Iniciar Sesión</h1>
+      <form onSubmit={handleLogin} className="login-form">
+        <div className="form-group">
+          <label htmlFor="email">Correo Electrónico</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Ingrese su correo"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
+        <div className="form-group">
+          <label htmlFor="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Ingrese su contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        {error && <p className="error-message">{error}</p>}
+        <button type="submit" className="btn-login">
+          Iniciar Sesión
+        </button>
+      </form>
+      <div className="register-link">
+        <p>
+          ¿No tienes una cuenta? <a href="/register">Regístrate</a>
+        </p>
       </div>
     </div>
   );

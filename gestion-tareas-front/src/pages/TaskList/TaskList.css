@@ -1,104 +1,228 @@
-/* Contenedor principal */
+/* Contenedor principal con mayor altura */
 .task-list-container {
-    padding: 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    font-family: "Arial", sans-serif;
-    color: #333;
-  }
-  
-  /* Título principal */
-  .task-list-container h1 {
-    text-align: center;
-    color: #007bff;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  /* Pestañas de categorías */
-  .category-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .category-tab {
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 0.8rem 2rem;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #333;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .category-tab:hover {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .category-tab.active {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
-  }
-  
-  /* Lista de tareas */
-  .task-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .task-item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.3s, background-color 0.3s;
-  }
-  
-  .task-item:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .task-item.completed {
-    opacity: 0.6;
-    text-decoration: line-through;
-    background-color: #e9ecef;
-  }
-  
-  .task-details {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-grow: 1;
-  }
-  
-  .task-details h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .task-details p {
-    margin: 0.3rem 0;
-    color: #666;
-  }
-  
-  /* Checkbox */
-  input[type="checkbox"] {
-    transform: scale(1.5);
-    cursor: pointer;
-  }
-  
+  width: 800px;
+  height: 800px;
+  padding: 2rem;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Pestañas de categorías */
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-tab {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.category-tab.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Lista de tareas */
+.task-list {
+  flex-grow: 1; /* Toma el espacio restante del contenedor */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto; /* Habilita el scroll vertical */
+  scrollbar-width: thin; /* Opcional: estiliza la barra de desplazamiento */
+}
+
+/* Mensaje cuando no hay tareas */
+.task-list-empty {
+  text-align: center;
+  color: #666;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+/* Tarea individual */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s, background-color 0.3s, height 0.3s;
+}
+
+/* Tareas completadas con menos altura */
+.task-item.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+  background-color: #e9ecef;
+}
+
+/* Detalles de la tarea */
+.task-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.task-details h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.task-details p {
+  margin: 0.3rem 0;
+  color: #666;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+
+/* Botones de acciones */
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.edit-button,
+.delete-button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #a71d2a;
+}
+
+/* Alineación del contenido en task-item */
+.task-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.task-info {
+  flex-grow: 1;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+
+/* Estilo del modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 400px;
+}
+
+.modal-content h3 {
+  margin: 0 0 1rem 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #999;
+}
+
+.confirm-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-button:hover {
+  background-color: #a71d2a;
+}
+
