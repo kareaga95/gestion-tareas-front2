@@ -147,9 +147,12 @@ input[type="checkbox"] {
   flex-grow: 1;
 }
 
-.task-info {
-  flex-grow: 1;
+.task-description p {
+  white-space: pre-wrap; /* Permite saltos de línea y quiebres de texto */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
+.cr
 
 .task-item {
   display: flex;

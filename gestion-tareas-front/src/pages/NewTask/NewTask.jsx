@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { getTaskById, updateTask } from "../../utils/api/TaskController";
-import "./EditTask.css";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createTask } from "../../utils/api/TaskController";
+import "./NewTask.css";
 
-const EditTask = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [task, setTask] = useState(null);
+const CreateTask = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [task, setTask] = useState({
+    title: "",
+    description: "",
+    category: "",
+    priority: "media",
+    dueDate: "",
+    user_id: user._id,
+  });
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchTask = async () => {
-      try {
-        const data = await getTaskById(id);
-        setTask(data);
-      } catch (err) {
-        console.error("Error al cargar la tarea:", err);
-        setError("No se pudo cargar la tarea.");
-      }
-    };
-
-    fetchTask();
-  }, [id]);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,23 +31,18 @@ const EditTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateTask(id, task);
-
-      const userId = task.user_id;
-      navigate(`/tasks/user/${userId}`);
+      await createTask(task);
+      navigate(`/tasks/user/${user._id}`);
     } catch (err) {
-      console.error("Error al actualizar la tarea:", err);
-      setError("No se pudo actualizar la tarea.");
+      console.error("Error al crear la tarea:", err);
+      setError("No se pudo crear la tarea. Por favor, inténtalo de nuevo.");
     }
   };
 
-  if (!task) return <p>Cargando...</p>;
-  if (error) return <p>{error}</p>;
-
   return (
-    <div className="edit-task-container">
-      <h1>Editar Tarea</h1>
-      <form onSubmit={handleSubmit} className="edit-task-form">
+    <div className="create-task-container">
+      <h1>Crear Nueva Tarea</h1>
+      <form onSubmit={handleSubmit} className="create-task-form">
         <label>
           Título:
           <input
@@ -70,13 +58,14 @@ const EditTask = () => {
         <label>
           Descripción:
           <textarea
+            className="task-description"
             name="description"
             value={task.description}
             onChange={handleChange}
             maxLength="75"
           />
+          <span>{task.description.length}/75</span>
         </label>
-        <span>{task.description.length}/75</span>
         <label>
           Categoria:
           <input
@@ -104,14 +93,15 @@ const EditTask = () => {
           <input
             type="date"
             name="dueDate"
-            value={task.dueDate ? task.dueDate.split("T")[0] : ""}
+            value={task.dueDate}
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Guardar Cambios</button>
+        {error && <p className="error-message">{error}</p>}
+        <button type="submit">Crear Tarea</button>
       </form>
     </div>
   );
 };
 
-export default EditTask;
+export default CreateTask;

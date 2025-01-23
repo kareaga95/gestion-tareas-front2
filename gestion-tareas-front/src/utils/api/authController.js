@@ -45,6 +45,25 @@ export async function login(credentials) {
 }
 
 /**
+ * Registra un nuevo usuario.
+ * 
+ * @param {Object} userData - Información del usuario a registrar (username, email, password).
+ * @returns {Promise<Object>} - Datos del usuario registrado.
+ */
+
+export async function register(userData) {
+    try {
+        console.log("ENTRA REGISTER", userData);
+        const response = await fetchAuth("/auth/register", "POST", userData);
+        console.log("Usuario registrado con éxito:", response);
+        return response;
+    } catch (error) {
+        console.error("Error al registrar usuario:", error);
+        throw error;
+    }
+}
+
+/**
  * Cierra sesión del usuario eliminando el token.
  */
 export function logout() {
@@ -77,5 +96,6 @@ export function logout() {
 export default {
     login,
     logout,
+    register
     //getAuthenticatedUser,
 };

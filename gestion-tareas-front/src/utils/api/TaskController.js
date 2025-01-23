@@ -84,6 +84,7 @@ export async function getTasksByCategory(category) {
  */
 export async function createTask(taskData) {
     try {
+        const user = JSON.parse(localStorage.getItem("user"));
         return await fetchTask(`/tasks`, "POST", taskData);
     } catch (error) {
         console.error("Error en createTask:", error);

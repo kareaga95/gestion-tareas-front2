@@ -3,43 +3,42 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import TaskList from "./pages/TaskList/TaskList";
 import Login from "./pages/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import EditTask from "./pages/EditTask/EditTask";
+import CreateTask from "./pages/NewTask/NewTask";
+import Register from "./pages/Register/Register";
 
 function App() {
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : null;
   });
-
-  const handleLogin = (userData) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
-  };
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
+    setLoading(false); // Estado cargado
   }, []);
 
-  console.log("User ID:", user?.id);
+  if (loading) {
+    return null; // Evita mostrar el navbar hasta que termine de cargar
+  }
 
   return (
     <Router>
-      <Navbar user={user} onLogout={() => { etUser(null);  localStorage.removeItem("user");  }} />
+      <Navbar user={user} onLogout={() => { setUser(null); localStorage.removeItem("user"); }} />
       <div>
         <Routes>
-          {/* Ruta raíz redirige a Login si no hay usuario autenticado */}
-          <Route
-            path="/tasks/user/:id" element={user ? <TaskList /> : <Navigate to="/Login" />}
-          />
-          <Route path="/Login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/edit-task/:id" element={<EditTask />} />
+          <Route path="/" element={user ? <Navigate to="/tasks" /> : <Navigate to="/login" />} />
+          <Route path="/tasks/user/:id" element={<TaskList />} />
+          <Route path="/login" element={<Login onLogin={setUser} />} />
+          <Route path="/editTask/:id" element={<EditTask />} />
+          <Route path="/createTask/" element={<CreateTask />} />
+          <Route path="/register/" element={<Register />} />
         </Routes>
       </div>
-      <Footer />
     </Router>
   );
 }

@@ -29,9 +29,18 @@
 }
 
 .navbar-title {
-  font-size: 1.5rem;
-  font-weight: bold;
   margin: 0;
+  font-size: 2rem;
+  color: white;
+}
+
+.navbar-title-link {
+  text-decoration: none; /* Sin subrayado */
+  color: inherit; /* Hereda el color del contenedor */
+}
+
+.navbar-title-link:hover {
+  color: #5b9bd5; /* Cambia el color al pasar el mouse, opcional */
 }
 
 /* Sección derecha: botones y enlaces */
@@ -42,6 +51,7 @@
   margin-right: 1rem;
 }
 
+/* Botón de crear tarea */
 .btn-create-task {
   background-color: white;
   color: #007bff;
@@ -59,19 +69,29 @@
   color: white;
 }
 
-.logout-link {
-  color: white;
+/* Enlaces del Navbar */
+.navbar-right a {
+  color: white; /* Color blanco para los enlaces */
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: bold;
   transition: color 0.3s;
-  cursor: pointer;
+}
+
+.navbar-right a:hover {
+  color: #ffcccc; /* Cambiar el color al pasar el mouse */
+}
+
+/* Estilo específico para el enlace de cerrar sesión */
+.logout-link {
+  color: white;
 }
 
 .logout-link:hover {
   color: #ffcccc;
 }
 
+/* Ajustar margen del contenido principal */
 main {
   margin-top: 70px;
 }

@@ -13,57 +13,56 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
     try {
       const response = await authController.login({ email, password });
-      const userId = response.user._id; // Asegúrate de que el backend devuelve un campo `_id`
-      if (!userId) throw new Error("No se pudo obtener el userId");
-  
-      // Guarda el usuario en localStorage
-      localStorage.setItem("user", JSON.stringify(response.user));
-  
-      console.log("Usuario logueado:", userId);
-      navigate(`/tasks/user/${userId}`);
-    } catch (err) {
-      console.error("Error al iniciar sesión:", err);
-      setError(err.message || "Error al iniciar sesión");
+      if (response.user) {
+        localStorage.setItem("user", JSON.stringify(response.user));
+        onLogin(response.user); // Notifica al Navbar
+        navigate(`/tasks/user/${response.user._id}`);
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      setError(error.message);
     }
   };
 
   return (
     <div className="login-container">
-      <h1>Iniciar Sesión</h1>
-      <form onSubmit={handleLogin} className="login-form">
-        <div className="form-group">
-          <label htmlFor="email">Correo Electrónico</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Ingrese su correo"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+      <div className="login-box">
+        <h1>Iniciar Sesión</h1>
+        <form onSubmit={handleLogin} className="login-form">
+          <div className="form-group">
+            <label htmlFor="email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Ingrese su correo"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Ingrese su contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          {error && <p className="error-message">{error}</p>}
+          <button type="submit" className="btn-login">
+            Iniciar Sesión
+          </button>
+        </form>
+        <div className="register-link">
+          <p>
+            ¿No tienes una cuenta? <a href="/register">Regístrate</a>
+          </p>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Ingrese su contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {error && <p className="error-message">{error}</p>}
-        <button type="submit" className="btn-login">
-          Iniciar Sesión
-        </button>
-      </form>
-      <div className="register-link">
-        <p>
-          ¿No tienes una cuenta? <a href="/register">Regístrate</a>
-        </p>
       </div>
     </div>
   );

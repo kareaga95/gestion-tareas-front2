@@ -72,7 +72,7 @@ const TaskList = () => {
   };
 
   const handleEditTask = (taskId) => {
-    navigate(`/edit-task/${taskId}`);
+    navigate(`/editTask/${taskId}`);
   };
 
   const confirmDeleteTask = (task) => {
@@ -131,7 +131,12 @@ const TaskList = () => {
                 />
                 <div className="task-info">
                   <h3>{task.title}</h3>
-                  <p>{task.description || "Sin descripción"}</p>
+                  <p
+                    className="task-description"
+                    dangerouslySetInnerHTML={{
+                      __html: (task.description || "Sin descripción").replace(/\n/g, "<br>"),
+                    }}
+                  ></p>
                   <p>Prioridad: {capitalize(task.priority)}</p>
                   {task.dueDate && (
                     <p>Fecha límite: {new Date(task.dueDate).toLocaleDateString()}</p>
