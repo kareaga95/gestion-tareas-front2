@@ -35,12 +35,12 @@
 }
 
 .navbar-title-link {
-  text-decoration: none; /* Sin subrayado */
-  color: inherit; /* Hereda el color del contenedor */
+  text-decoration: none;
+  color: inherit;
 }
 
 .navbar-title-link:hover {
-  color: #5b9bd5; /* Cambia el color al pasar el mouse, opcional */
+  color: #5b9bd5;
 }
 
 /* Sección derecha: botones y enlaces */
@@ -71,7 +71,7 @@
 
 /* Enlaces del Navbar */
 .navbar-right a {
-  color: white; /* Color blanco para los enlaces */
+  color: white;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: bold;
@@ -79,7 +79,7 @@
 }
 
 .navbar-right a:hover {
-  color: #ffcccc; /* Cambiar el color al pasar el mouse */
+  color: #ffcccc;
 }
 
 /* Estilo específico para el enlace de cerrar sesión */

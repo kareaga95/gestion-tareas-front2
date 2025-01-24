@@ -9,7 +9,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
-    const [showSuccessModal, setShowSuccessModal] = useState(false); // Estado para controlar el modal de éxito
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
@@ -24,12 +24,10 @@ const Register = () => {
 
         try {
             const response = await authController.register(userData);
-            console.log("RESPONSE", response);
             if (!response) {
                 throw new Error(response.error || "Error al registrarse");
             }
 
-            console.log("Usuario registrado con éxito:", response);
             setShowSuccessModal(true);
 
         } catch (error) {

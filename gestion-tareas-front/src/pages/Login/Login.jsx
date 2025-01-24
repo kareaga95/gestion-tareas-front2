@@ -15,7 +15,7 @@ const Login = ({ onLogin }) => {
       const response = await authController.login({ email, password });
       if (response.user) {
         localStorage.setItem("user", JSON.stringify(response.user));
-        onLogin(response.user); // Notifica al Navbar
+        onLogin(response.user);
         navigate(`/tasks/user/${response.user._id}`);
       }
     } catch (error) {

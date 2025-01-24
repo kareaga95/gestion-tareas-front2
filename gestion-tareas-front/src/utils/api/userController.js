@@ -33,7 +33,6 @@ async function fetchUser(pathName, method = "GET", body = null) {
  * Actualiza el estado (activo/inactivo) de un usuario
  */
 export async function updateUserStatus(userId, active) {
-    console.log("ENTRA UPDATE USER STATUS", userId, active);
     return await fetchUser(`/users/${userId}/status`, "PATCH", { active });
 }
 

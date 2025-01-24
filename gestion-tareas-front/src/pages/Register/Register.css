@@ -35,28 +35,28 @@ h1 {
     display: block;
     margin-bottom: 5px;
     font-size: 0.9rem;
-    color: #666666; /* Texto más claro */
+    color: #666666;
 }
 
 .form-group input {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #ccc; /* Borde gris claro */
+    border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #f9f9f9; /* Fondo claro */
-    color: #333333; /* Texto oscuro */
+    background-color: #f9f9f9;
+    color: #333333;
     box-sizing: border-box;
 }
 
 .form-group input:focus {
-    border-color: #5b9bd5; /* Azul claro */
+    border-color: #5b9bd5;
     outline: none;
-    background-color: #ffffff; /* Fondo blanco */
+    background-color: #ffffff;
 }
 
 .btn-register {
-    background-color: #5b9bd5; /* Azul claro */
+    background-color: #5b9bd5;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -67,17 +67,17 @@ h1 {
 }
 
 .btn-register:hover {
-    background-color: #4a89c9; /* Azul más oscuro */
+    background-color: #4a89c9;
 }
 
 .login-link {
     margin-top: 15px;
     font-size: 0.9rem;
-    color: #333333; /* Texto oscuro */
+    color: #333333;
 }
 
 .login-link a {
-    color: #5b9bd5; /* Azul claro */
+    color: #5b9bd5;
     text-decoration: none;
     font-weight: bold;
 }
@@ -92,7 +92,7 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,10 +100,10 @@ h1 {
 }
 
 .modal-content {
-    background-color: #ffffff; /* Fondo blanco */
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    color: #333333; /* Texto oscuro */
+    color: #333333;
     text-align: center;
     width: 300px;
 }
@@ -111,17 +111,17 @@ h1 {
 .modal-content h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: #333333; /* Texto oscuro */
+    color: #333333;
 }
 
 .modal-content p {
     margin-bottom: 20px;
-    color: #666666; /* Texto más claro */
+    color: #666666;
 }
 
 .confirm-button {
-    background-color: #5b9bd5; /* Azul claro */
-    color: #ffffff; /* Texto blanco */
+    background-color: #5b9bd5;
+    color: #ffffff;
     padding: 10px 20px;
     font-size: 1rem;
     border: none;
@@ -130,5 +130,5 @@ h1 {
 }
 
 .confirm-button:hover {
-    background-color: #4a89c9; /* Azul más oscuro */
+    background-color: #4a89c9;
 }

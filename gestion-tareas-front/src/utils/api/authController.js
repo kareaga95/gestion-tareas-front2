@@ -66,7 +66,6 @@ export async function register(userData) {
  * Cierra sesión del usuario eliminando el token.
  */
 export function logout() {
-    console.log("ENTRA LOGOUT")
     localStorage.removeItem("authToken");
     localStorage.removeItem("user");
     localStorage.removeItem("artist");

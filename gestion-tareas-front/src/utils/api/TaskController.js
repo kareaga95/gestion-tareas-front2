@@ -10,7 +10,7 @@ async function fetchTask(pathName, method = "GET", body = null) {
             method,
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`, // Token de autenticación
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`,
             },
             body: body ? JSON.stringify(body) : null,
         };
@@ -58,7 +58,6 @@ export async function getTaskById(taskId) {
  * Obtener tareas de un usuario específico
  */
 export async function getTasksByUserId(userId) {
-    console.log("ENTRA TASKUSER FRONT ", userId);
     try {
         return await fetchTask(`/tasks/user/${userId}`);
     } catch (error) {
@@ -109,7 +108,6 @@ export async function updateTask(taskId, updatedData) {
  */
 export async function deleteTask(taskId) {
     try {
-        console.log("taskId", taskId);
         return await fetchTask(`/tasks/${taskId}/delete`, "DELETE");
     } catch (error) {
         console.error(`Error en deleteTask (ID: ${taskId}):`, error);

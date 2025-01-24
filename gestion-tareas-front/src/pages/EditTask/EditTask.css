@@ -26,11 +26,11 @@
   .edit-task-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* Espaciado uniforme entre elementos */
+    gap: 1.5rem;
     width: 100%;
-    max-width: 700px; /* Aumentar el ancho del formulario */
-    margin: 0 auto; /* Asegurar el centrado horizontal */
-    padding: 0 2rem; /* Márgenes uniformes a izquierda y derecha */
+    max-width: 700px; 
+    margin: 0 auto;
+    padding: 0 2rem;
   }
   
   /* Etiquetas */
@@ -82,7 +82,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
-    align-self: center; /* Centrar el botón */
+    align-self: center;
   }
   
   .edit-task-form button[type="submit"]:hover {

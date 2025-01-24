@@ -39,13 +39,13 @@ const TaskList = () => {
       const remainingCategories = Object.keys(groupedTasks).filter(
         (category) => groupedTasks[category]?.length > 0
       );
-      setActiveCategory(remainingCategories[0] || null); // Cambiar a la siguiente categoría disponible o ninguna
+      setActiveCategory(remainingCategories[0] || null);
     }
   }, [tasks, activeCategory]);
 
   const handleCheckboxChange = async (taskId, completed) => {
     try {
-      const updatedTask = await updateTask(taskId, { completed }); // Actualizar tarea en el servidor
+      const updatedTask = await updateTask(taskId, { completed });
       setTasks((prevTasks) =>
         prevTasks.map((task) =>
           task._id === taskId ? { ...task, completed: updatedTask.completed } : task
@@ -84,8 +84,8 @@ const TaskList = () => {
     const priorityOrder = { alta: 1, media: 2, baja: 3 };
     return tasks.sort(
       (a, b) =>
-        a.completed - b.completed || // Las tareas no completadas van primero
-        priorityOrder[a.priority] - priorityOrder[b.priority] // Ordenar por prioridad
+        a.completed - b.completed ||
+        priorityOrder[a.priority] - priorityOrder[b.priority]
     );
   };
 
@@ -102,7 +102,6 @@ const TaskList = () => {
 
   return (
     <div className="task-list-container">
-      {/* Categorías */}
       <div className="category-tabs">
         {Object.keys(groupedTasks).map((category) => (
           <button
@@ -115,7 +114,6 @@ const TaskList = () => {
         ))}
       </div>
 
-      {/* Lista de tareas por categoría activa */}
       {activeCategory && groupedTasks[activeCategory]?.length > 0 ? (
         <ul className="task-list">
           {sortTasks(groupedTasks[activeCategory]).map((task) => (
@@ -127,7 +125,7 @@ const TaskList = () => {
                 <input
                   type="checkbox"
                   checked={task.completed}
-                  onChange={(e) => handleCheckboxChange(task._id, e.target.checked)} // Actualiza la tarea al cambiar el estado
+                  onChange={(e) => handleCheckboxChange(task._id, e.target.checked)}
                 />
                 <div className="task-info">
                   <h3>{task.title}</h3>
