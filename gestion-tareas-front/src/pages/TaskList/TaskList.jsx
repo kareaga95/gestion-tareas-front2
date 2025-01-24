@@ -20,7 +20,7 @@ const TaskList = () => {
         const data = await getTasksByUserId(userId);
         setTasks(data);
         if (data.length > 0) {
-          setActiveCategory(data[0].category); // Seleccionar la primera categoría por defecto
+          setActiveCategory(data[0].category);
         }
       } catch (err) {
         console.error("Error al cargar las tareas:", err);

@@ -1,9 +1,14 @@
-/* Contenedor principal con mayor altura */
+body {
+  overflow: hidden;
+}
+
+/* Contenedor principal */
 .task-list-container {
   width: 800px;
-  height: 800px;
+  height: 90vh;
   padding: 2rem;
   margin: 0 auto;
+  margin-top: 5rem;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -18,19 +23,23 @@
 .category-tabs {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
 }
 
 .category-tab {
   background-color: #f1f1f1;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 1.5rem;
   cursor: pointer;
   font-size: 1rem;
   color: #333;
   transition: background-color 0.3s, color 0.3s;
+  white-space: nowrap;
 }
 
 .category-tab.active {
@@ -41,37 +50,44 @@
 
 /* Lista de tareas */
 .task-list {
-  flex-grow: 1; /* Toma el espacio restante del contenedor */
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow-y: auto; /* Habilita el scroll vertical */
-  scrollbar-width: thin; /* Opcional: estiliza la barra de desplazamiento */
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 1rem;
+  padding: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+  border-top: 1px solid #ddd;
 }
 
-/* Mensaje cuando no hay tareas */
-.task-list-empty {
-  text-align: center;
-  color: #666;
-  font-size: 1.2rem;
-  margin-top: 1rem;
+/* Barra de desplazamiento personalizada para tareas */
+.task-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.task-list::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }
 
 /* Tarea individual */
 .task-item {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: space-between;
+  gap: 1rem;
   padding: 1rem;
   border-bottom: 1px solid #ddd;
   background-color: #f9f9f9;
   border-radius: 8px;
   margin-bottom: 1rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s, background-color 0.3s, height 0.3s;
 }
 
-/* Tareas completadas con menos altura */
+/* Tareas completadas */
 .task-item.completed {
   opacity: 0.6;
   text-decoration: line-through;
@@ -95,6 +111,9 @@
 .task-details p {
   margin: 0.3rem 0;
   color: #666;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Checkbox */
@@ -102,7 +121,6 @@ input[type="checkbox"] {
   transform: scale(1.5);
   cursor: pointer;
 }
-
 
 /* Botones de acciones */
 .task-actions {
@@ -138,94 +156,3 @@ input[type="checkbox"] {
 .delete-button:hover {
   background-color: #a71d2a;
 }
-
-/* Alineación del contenido en task-item */
-.task-details {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-grow: 1;
-}
-
-.task-description p {
-  white-space: pre-wrap; /* Permite saltos de línea y quiebres de texto */
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-.cr
-
-.task-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1rem;
-  border-bottom: 1px solid #ddd;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s, background-color 0.3s;
-}
-
-
-/* Estilo del modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  width: 400px;
-}
-
-.modal-content h3 {
-  margin: 0 0 1rem 0;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 1.5rem;
-}
-
-.cancel-button {
-  background-color: #ccc;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.cancel-button:hover {
-  background-color: #999;
-}
-
-.confirm-button {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.confirm-button:hover {
-  background-color: #a71d2a;
-}
-
